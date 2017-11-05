@@ -18,6 +18,7 @@ function selectLanguage(){
              choiseLanguage === 'ru' ? (() => {hintNumber = 1; return 1})() :
              (() => {hintNumber = 0; selectLanguage()})();
   showHint(hintNumber);
+
   language === undefined ? () => {} : setTimeout(onStart, 1000);
   });
 };
