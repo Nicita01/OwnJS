@@ -9,25 +9,32 @@ const inter = rl.createInterface({
 });
 let hintNumber;
 let language;
-let dir = __dirname
+const dir = __dirname;
 selectLanguage()
 
 function selectLanguage(){
   inter.question('Select the language: en/ru\n', function(choiseLanguage){
   language = choiseLanguage === 'en' ? (() => {hintNumber = 1; return 0})() :
-                 choiseLanguage === 'ru' ? (() => {hintNumber = 1; return 1})() :
-                 (() => {hintNumber = 0; selectLanguage()})();
+             choiseLanguage === 'ru' ? (() => {hintNumber = 1; return 1})() :
+             (() => {hintNumber = 0; selectLanguage()})();
   showHint(hintNumber);
-  setTimeout(onStart(12), 2000)
+  language === undefined ? '' : setTimeout(onStart, 1000);
   });
 };
 
 const hint = fs.readFileSync(dir + '/hints.json');
 const hintParse = JSON.parse("" + hint);
-function showHint(hintNumber){
-  hintNumber === 0 ? () => {} : inter.write(hintParse[language][hintNumber]);
+function showHint(hintNumb){
+  hintNumb === 0 ? () => {} : inter.write(hintParse[language][hintNumb]);
 };
-function fff(){console.log(language); rl.pause};
-function onStart(dir){
-  showHint(2)
+
+function onStart(){
+  showHint(2);
+  fs.access(dir + '/DataBase.json', fs.constants.F_OK, (err) => {
+    !err ? (() => {
+      showHint(3);
+      console.log('\x1b[35m' + ' ' + dir + '/DataBase.json')
+    })() : console.log(12);
+  });
+
 };
