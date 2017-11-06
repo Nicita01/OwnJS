@@ -2,7 +2,8 @@
 
 const fs = require('fs');
 const rl = require('readline');
-const tt = require('./SQLtoJS.js');
+const SQL = require('./SQLtoJS.js');
+const valid = require('./validAccess.js');
 
 const inter = rl.createInterface({
   input: process.stdin,
@@ -43,4 +44,3 @@ function onStart(){
       })()
     }), 1500);
 };
-
