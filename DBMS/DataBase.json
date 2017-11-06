@@ -1,3 +1,5 @@
+
+   
 {
   "Workers": {
     "IDworkers": {
@@ -18,7 +20,7 @@
       "2": "19-08-1888",
       "3": "04-11-1995"
     },
-    "Start": {
+    "DataStart": {
       "0": "01-12-2008",
       "1": "05-11-2016",
       "2": "13-06-2014",
@@ -40,11 +42,126 @@
       "M": 4
     },
     "NamePosition": {
-    "0": "касир",
-    "1": "администратор",
-    "2": "уборщик",
-    "3": "директор",
-    "4": "мерчендайзер"
+      "0": "касир",
+      "1": "администратор",
+      "2": "уборщик",
+      "3": "директор",
+      "4": "мерчендайзер"
     }
-  }
+  },
+  "DirectoryDepartment": {
+    "Name": {
+      "bakery": 0,
+      "drinks": 1,
+      "sea food": 2,
+      "milk": 3,
+      "fruit & veg": 4,
+      "snaks": 5
+    },
+    "IDresponsible":  {
+      "0": "2A",
+      "1": "7C",
+      "2": "2A",
+      "3": "7C",
+      "4": "15K",
+      "5": "15K"
+    }
+  },
+  "/DirectoryAccess": {
+    "read": {
+      "Workers": 1,
+      "DirectoryPosition": 2,
+      "DirectoryDepartment": 4,
+      "/DirectoryAccess": 8,
+      "Products": 4096,
+      "/Users": 131072
+    },
+    "writeNew": {
+      "Workers": 16,
+      "DirectoryPosition": 32,
+      "DirectoryDepartment": 64,
+      "/DirectoryAccess": 128,
+      "Products": 8092,
+      "/Users": 32768
+    },
+    "deleteModification": {
+      "Workers": 256,
+      "DirectoryPosition": 512,
+      "DirectoryDepartment": 1024,
+      "/DirectoryAccess": 2048,
+      "Products": 16384,
+      "/Users": 65536
+    } 
+  },
+  "/Relation" : [
+    "Workers.IDworkers<DirectoryDepartments.Idresponsible",
+    "Workers.IDposition>DirectoryPosition.IDposition"        
+  ],
+  "/Users": {
+    "logs": {
+      "root": 0,
+      "admin": 1,
+      "user1": 2,
+      "Sonya": 3,
+      "Nikita": 4
+    },
+    "pass": {
+      "0": "79a",
+      "1": "1237",
+      "2": "12345",
+      "3": "129",
+      "4": "139"
+    },
+    "ControlSummAccess": {
+      "0":
+      
+    }
+  },
+  "Products": {
+    "name": {
+      "apple": 0,
+      "lemon": 1,
+      "egg": 2,
+      "cheese": 3,
+      "ham": 4,
+      "bread": 5,
+      "muffin": 6
+    },
+    "IDdepartment": {
+      "0": 4,
+      "1": 4,
+      "2": 3,
+      "3": 3,
+      "4": 5,
+      "5": 0,
+      "6": 0
+    },
+    "Count": {
+      "0": 12,
+      "1": 75,
+      "2": 25,
+      "3": 13,
+      "4": 34,
+      "5": 45,
+      "6": 12             
+    },
+    "CountMin": { 
+      "0": 10,
+      "1": 25,
+      "2": 35,
+      "3": 8,
+      "4": 45,
+      "5": 12,
+      "6": 6             
+    },
+    "Price": { 
+      "0": 100,
+      "1": 25,
+      "2": 35,
+      "3": 8,
+      "4": 45,
+      "5": 12,
+      "6": 43
+    }
+  }  
 }
