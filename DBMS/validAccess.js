@@ -13,4 +13,3 @@ function validAccess(controlAccessNumber, userAccessNumber){
     };
   return access;
   };
-console.log(validAccess(4,7));
