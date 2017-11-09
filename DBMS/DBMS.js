@@ -2,13 +2,15 @@
 
 const fs = require('fs');
 const rl = require('readline');
-const SQL = require('./SQLtoJS.js');
+//const SQL = require('./SQLtoJS.js');
 const valid = require('./validAccess.js');
+const parserCommand = require('./parser.js');
 
 const inter = rl.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+
 let hintNumber;
 let language;
 const dir = __dirname;
@@ -27,7 +29,8 @@ function selectLanguage(){
 const hint = fs.readFileSync(dir + '/hints.json');
 const hintParse = JSON.parse("" + hint);
 function showHint(hintNumber){
-  hintNumber === 0 ? () => {} : inter.write(hintParse[language][hintNumber]);
+  hintParse[0][hintNumber] === undefined ?
+  () => {} : inter.write(hintParse[language][hintNumber]);
 };
 
 function onStart(){
@@ -41,6 +44,16 @@ function onStart(){
       })() : (() => {
         inter.write('\x1b[31m');
         showHint(4);
-      })()
+      })();
+      readCommand();
     }), 1500);
 };
+
+function readCommand(){
+  inter.on('line', function(command){
+    let p = 2; console.log(command);
+    p = parserCommand.parser(command);
+    showHint(p);
+    console.log('WENTUS' + p);
+
+  }) };

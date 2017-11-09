@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const valid = require('./validAccess.js');
+const valid = require('./validAccess');
 
 const dir = __dirname
 const DB = fs.readFileSync(dir + '/DataBase.json');
@@ -12,6 +12,6 @@ parseDB['/Users']['ControlSummAccess'][
   parseDB['/Users']['logs'][activeUserName]
 ];
 
+for (){
 const controlAccessNumber = parseDB['/DirectoryAccess'][IDaccess][table];
-
-const validAccess = valid.validAccess(controlAccessNumber, userAccessNumber);
+};
