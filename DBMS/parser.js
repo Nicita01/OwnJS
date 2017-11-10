@@ -13,13 +13,13 @@ Object.defineProperty(switchCommand, 'giver', {
   enumerable: false,
   set: (firstWord) => {
     if(switchCommand[firstWord] !== undefined){
-      commandID = switchCommand[firstWord]; console.log(firstWord);
-    } else {commandID = 'err1';console.log(12 + firstWord)};
+      commandID = switchCommand[firstWord];
+    } else commandID = 'err1'
   }
 });
+
 let commandID;
 exports.parser = function(command){
-  console.log('start '+command);
   switchCommand.giver = command.split(' ')[0].toLowerCase();
   return commandID;
 };

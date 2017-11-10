@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const rl = require('readline');
-//const SQL = require('./SQLtoJS.js');
+const sql = require('./SQLtoJS.js');
 const valid = require('./validAccess.js');
 const parserCommand = require('./parser.js');
 
@@ -14,7 +14,7 @@ const inter = rl.createInterface({
 let hintNumber;
 let language;
 const dir = __dirname;
-selectLanguage()
+selectLanguage();
 
 function selectLanguage(){
   inter.question('Select the language: en/ru\n', function(choiseLanguage){
@@ -39,10 +39,10 @@ function onStart(){
     () => fs.access(dir + '/DataBase.json', fs.constants.F_OK, (err) => {
       !err ? (() => {
         showHint(3);
-        inter.write('\x1b[36m' + ' ' + dir + '/DataBase.json\n' + '\x1b[37m');
+        inter.write('\x1b[36m ' + dir + '/DataBase.json\n' + '\x1b[0m');
         showHint(5);
       })() : (() => {
-        inter.write('\x1b[31m');
+        //inter.write('\x1b[31m');
         showHint(4);
       })();
       readCommand();
@@ -50,10 +50,16 @@ function onStart(){
 };
 
 function readCommand(){
-  inter.on('line', function(command){
-    let p = 2; console.log(command);
-    p = parserCommand.parser(command);
-    showHint(p);
-    console.log('WENTUS' + p);
+  let commandID;
+  inter.question('', function(command){
+    commandID = parserCommand.parser(command);
+    showHint(commandID);
+    if (commandID === 'man') {
+      showHint(6)
+    } //else if (commandID === 'sql') {
+    //  sql
+  //  }
 
-  }) };
+    readCommand();
+  })
+};

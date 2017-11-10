@@ -1,4 +1,4 @@
-   
+
 {
   "Workers": {
     "IDworkers": {
@@ -23,7 +23,7 @@
       "0": "01-12-2008",
       "1": "05-11-2016",
       "2": "13-06-2014",
-      "3": "22-09-2012" 
+      "3": "22-09-2012"
     },
     "IDposition": {
       "0": "K",
@@ -90,11 +90,11 @@
       "/DirectoryAccess": 2048,
       "Products": 16384,
       "/Users": 65536
-    } 
+    }
   },
   "/Relation" : [
     "Workers.IDworkers<DirectoryDepartments.Idresponsible",
-    "Workers.IDposition>DirectoryPosition.IDposition"        
+    "Workers.IDposition>DirectoryPosition.IDposition"
   ],
   "/Users": {
     "logs": {
@@ -112,8 +112,8 @@
       "4": "139"
     },
     "ControlSummAccess": {
-      "0":
-      
+      "0": 7
+
     }
   },
   "Products": {
@@ -142,18 +142,18 @@
       "3": 13,
       "4": 34,
       "5": 45,
-      "6": 12             
+      "6": 12
     },
-    "CountMin": { 
+    "CountMin": {
       "0": 10,
       "1": 25,
       "2": 35,
       "3": 8,
       "4": 45,
       "5": 12,
-      "6": 6             
+      "6": 6
     },
-    "Price": { 
+    "Price": {
       "0": 100,
       "1": 25,
       "2": 35,
@@ -162,8 +162,5 @@
       "5": 12,
       "6": 43
     }
-  }  
+  }
 }
-
-
-

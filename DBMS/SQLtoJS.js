@@ -6,7 +6,7 @@ const valid = require('./validAccess');
 const dir = __dirname
 const DB = fs.readFileSync(dir + '/DataBase.json');
 const parseDB = JSON.parse("" + DB);
-
+/*
 const userAccessNumber =
 parseDB['/Users']['ControlSummAccess'][
   parseDB['/Users']['logs'][activeUserName]
@@ -15,3 +15,4 @@ parseDB['/Users']['ControlSummAccess'][
 for (){
 const controlAccessNumber = parseDB['/DirectoryAccess'][IDaccess][table];
 };
+*/
