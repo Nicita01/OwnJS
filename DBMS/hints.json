@@ -6,7 +6,11 @@
     "4": "Database not selected\n",
     "5": "For help: /manual\n",
     "6": " <тут будет мануалка на инглише (ее еще нету)>\n ",
-    "err1": "Command not found\n"
+    "err1": "Command not found\n",
+    "7": "For sign in write /log <log> <pass>\n For sign up write /reg <log> <pass> <pass>\n",
+    "err2": "User with this login already is in the system",
+    "err3": "Your passwords do not match",
+    "8": "You sign in "
   },
   "1":{
     "1": "Выбран русский язык",
@@ -15,6 +19,9 @@
     "4": "База данны не выбрана",
     "5": "Для помощи: /manual",
     "6": " <тут будет мануалка на русском> ",
-    "err1": "Команда не найдена"
+    "err1": "Команда не найдена",
+    "7": "Для входа в систему наберите: /log <log> <pass>\n Для регистрации наберите: /log <pass> <pass>\n",
+    "err2": "Пользователь с таким именем уже есть в системе",
+    "err3": "Пароли не совпадают"
   }
 }

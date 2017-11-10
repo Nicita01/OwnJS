@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const rl = require('readline');
-const sql = require('./SQLtoJS.js');
+//const sql = require('./SQLtoJS.js');
 const valid = require('./validAccess.js');
 const parserCommand = require('./parser.js');
 
@@ -14,6 +14,7 @@ const inter = rl.createInterface({
 let hintNumber;
 let language;
 const dir = __dirname;
+let activeUserID;
 selectLanguage();
 
 function selectLanguage(){
@@ -25,6 +26,32 @@ function selectLanguage(){
   language === undefined ? () => {} : setTimeout(onStart, 1000);
   });
 };
+
+function signInUp(){
+  showHint(7)
+  inter.question('', (string) => {
+    if (string.split(' ')[0].toLowerCase() === reg) {
+      logFree = true;
+       for(let i = 0; i in hintParse[/Users].logs; ++i) {
+         if (string.split(' ')[1].toLowerCase() === i) {
+           showHint('err2');
+           logFree = false;
+         }
+       }
+       if (string.split(' ')[2].toLowerCase() !==
+          string.split(' ')[3].toLowerCase()){
+          showHint('err3');
+          signInUp();
+        } else {
+
+        }
+          }
+
+           }
+         }
+       };
+    }
+*/
 
 const hint = fs.readFileSync(dir + '/hints.json');
 const hintParse = JSON.parse("" + hint);
@@ -50,8 +77,8 @@ function onStart(){
 };
 
 function readCommand(){
-  let commandID;
-  inter.question('', function(command){
+  let commandID = '';
+  inter.on('line', function(command){
     commandID = parserCommand.parser(command);
     showHint(commandID);
     if (commandID === 'man') {
