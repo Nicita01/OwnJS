@@ -32,7 +32,10 @@ exports.login = (rl) => {
       const password = answer;
       rl.pause()
       if (userPass(password)) console.log(`ID ${userId} access alowed`);
-      else console.log(`ID ${userId} access denied`);
+      else {
+        console.log(`ID ${userId} access denied`);
+        return;
+      }
       DBMS.selectLanguage();
     });
   });

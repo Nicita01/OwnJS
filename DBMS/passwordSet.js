@@ -28,12 +28,13 @@ exports.signUp = (rl) => {
     DataBase['/Users']['logins'][username] = maxId + 1;
 
     rl.question('Set your password: ', (answer) => {
-      DataBase['/Users']['pass'][username] = answer;
+      const id = DataBase['/Users']['logins'][username];
+      DataBase['/Users']['pass'][id] = answer;
       const data = JSON.stringify(DataBase, null, 2);
       fs.writeFile('./DataBase.json', data, (err) => {
         if (err) throw err;
-        console.log('Password set successfully.');
       });
+      console.log('New account created.');
       DBMS.selectLanguage();
       // rl.close()
     });
