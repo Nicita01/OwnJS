@@ -1,4 +1,3 @@
-
 {
   "Workers": {
     "IDworkers": {
@@ -57,7 +56,7 @@
       "fruit & veg": 4,
       "snaks": 5
     },
-    "IDresponsible":  {
+    "IDresponsible": {
       "0": "2A",
       "1": "7C",
       "2": "2A",
@@ -92,12 +91,12 @@
       "/Users": 65536
     }
   },
-  "/Relation" : [
+  "/Relation": [
     "Workers.IDworkers<DirectoryDepartments.Idresponsible",
     "Workers.IDposition>DirectoryPosition.IDposition"
   ],
   "/Users": {
-    "logs": {
+    "logins": {
       "root": 0,
       "admin": 1,
       "user1": 2,
@@ -114,7 +113,6 @@
     "ControlSummAccess": {
       "0": 7,
       "1": 9
-
     }
   },
   "Products": {

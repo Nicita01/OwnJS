@@ -2,56 +2,38 @@
 
 const fs = require('fs');
 const rl = require('readline');
-//const sql = require('./SQLtoJS.js');
+// const sql = require('./SQLtoJS.js');
 const valid = require('./validAccess.js');
 const parserCommand = require('./parser.js');
+const passwordCheck = require('./passwordCheck.js');
+const passwordSet = require('./passwordSet.js');
+
+
+const dir = __dirname;
+let hintNumber;
+let language;
+let activeUserID;
 
 const inter = rl.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-let hintNumber;
-let language;
-const dir = __dirname;
-let activeUserID;
-selectLanguage();
+const data = fs.readFileSync('./DataBase.json', 'utf8');
+const users = JSON.parse(data)['/Users'];
 
-function selectLanguage(){
-  inter.question('Select the language: en/ru\n', function(choiseLanguage){
+if (!users) passwordSet.signUp(inter);
+else passwordCheck.login(inter);
+
+exports.selectLanguage = () => {
+  inter.question('Select the language: en/ru\n', (choiseLanguage) => {
   language = choiseLanguage === 'en' ? (() => {hintNumber = 1; return 0})() :
              choiseLanguage === 'ru' ? (() => {hintNumber = 1; return 1})() :
              (() => {hintNumber = 0; selectLanguage()})();
   showHint(hintNumber);
-  language === undefined ? () => {} : setTimeout(onStart, 1000);
+  language === undefined ? () => {} : onStart();
   });
 };
-
-function signInUp(){
-  showHint(7)
-  inter.question('', (string) => {
-    if (string.split(' ')[0].toLowerCase() === reg) {
-      logFree = true;
-       for(let i = 0; i in hintParse[/Users].logs; ++i) {
-         if (string.split(' ')[1].toLowerCase() === i) {
-           showHint('err2');
-           logFree = false;
-         }
-       }
-       if (string.split(' ')[2].toLowerCase() !==
-          string.split(' ')[3].toLowerCase()){
-          showHint('err3');
-          signInUp();
-        } else {
-
-        }
-          }
-
-           }
-         }
-       };
-    }
-*/
 
 const hint = fs.readFileSync(dir + '/hints.json');
 const hintParse = JSON.parse("" + hint);
@@ -78,7 +60,8 @@ function onStart(){
 
 function readCommand(){
   let commandID = '';
-  inter.on('line', function(command){
+  inter.question('', (command) => {
+    inter.pause()
     commandID = parserCommand.parser(command);
     showHint(commandID);
     if (commandID === 'man') {
