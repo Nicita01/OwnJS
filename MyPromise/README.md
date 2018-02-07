@@ -1,9 +1,9 @@
-#MyPromise
+# MyPromise
 
 This is the first version of my promise, which at the moment works as a standard promise and supports methods:
 -**then**
 -**case**
-##Usage
+## Usage
 
 For create new promise, write:
 ```js
