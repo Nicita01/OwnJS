@@ -55,13 +55,8 @@ function decoder(text, key) {
   }
   for (let r in textArr) {
     let keyy = keyArr[r % keyArr.length] 
-    //console.log(keyy);
     let curArr = arr[keyy.charCodeAt() - 'a'.charCodeAt()];
-    //console.log(textArr[r], '  ',arr[0].indexOf(textArr[r]));
-    //console.log(curArr);
     result[r] = arr[0][curArr.indexOf(textArr[r])];
   }
- // console.log(is(result.join('')));
   return result;
 }
-//f(require('fs').readFileSync(__dirname + '/chiper.text', 'utf8') , 'sdfghtre');
