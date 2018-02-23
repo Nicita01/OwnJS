@@ -12,8 +12,8 @@ E: **text.txt:** *I love my life!!!*\
    **simpleText.txt:** *ilovemylife*\
 Then, you must to enter your key, which will be use by cipher. And, then, coded text will be put to **codedText.txt**\
 E: **simpleText.txt:** *ilovemylife*\
-   **key: ***key*\
--> **codeText.txt: ** *spmfikipgpi*
+   **key:** *key*\
+-> **codeText.txt:** *spmfikipgpi*
 
 ## Vigener decoder with key
 
