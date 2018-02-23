@@ -8,12 +8,12 @@ If you want to encode your text on the Vigener cipher, place it on **text.txt**
 Then, run **decoder.js**
 Your open text (text, which you want to coding) should be in English, do not have any characters other than 26 English letters, including spaces between words, and also be in lowercase. If the text is not so, it will be brought to this form and placed in a file **simpleText.txt**
 So, after run **decoder.js**, text from **text.js** will be brought into a normal form. All uppercase English letters will be converted to similar lowercase letters. And characters that are not part of the English alphabet will simply be ignored\
-E: **text.txt:***       **I love my life!!!*\
-   **simpleText.txt:***  **ilovemylife*\
+E: **text.txt:** *I love my life!!!*\
+   **simpleText.txt:** *ilovemylife*\
 Then, you must to enter your key, which will be use by cipher. And, then, coded text will be put to **codedText.txt**\
-E: **simpleText.txt:*** **ilovemylife*\
-   **key:***            **key*\
--> **codeText.txt***    **spmfikipgpi*\
+E: **simpleText.txt:** *ilovemylife*\
+   **key: ***key*\
+-> **codeText.txt: ** *spmfikipgpi*
 
 ## Vigener decoder with key
 
