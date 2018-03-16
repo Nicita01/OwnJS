@@ -8,7 +8,7 @@
   },
   "author": "nikita_mac",
   "license": "ISC",
-  "dependencies": { 
-   " advanced_promise": "^1.0.0"
+  "dependencies": {
+    "advanced_promise": "^1.0.2"
   }
 }
