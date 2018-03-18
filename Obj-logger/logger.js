@@ -1,6 +1,6 @@
 'use strict';
 
-function logger(obj){
+function Logger(obj) {
   if (typeof obj !== 'object') {
     throw new  TypeError(obj, ' is not an object');
   }
@@ -11,9 +11,11 @@ function logger(obj){
       return prototype;
     },
     setPrototypeOf(target, prototype) {
-      console.log('setPrototypeOf\n  prototype:', prototype);
-      Object.setPrototypeOf(target, prototype);
-      return true;
+      const setProtoStatus = Reflect.setPrototypeOf(target, prototype);
+      console.log(
+        'setPrototypeOf\n  prototype:', prototype, '\n  result:', setProtoStatus
+      );
+      return setProtoStatus;
     },
     isExtensible(target) {
       const isExtensible = Object.isExtensible(target);
@@ -25,18 +27,17 @@ function logger(obj){
       console.log('preventExtensions\n  result:', extensionStatus);
       return extensionStatus;
     },
-    getOwnPropertyDescriptor(targer, prop) {
-      const descriptor = Object.getOwnPropertyDescriptor(target, prop);
+    getOwnPropertyDescriptor(target, property) {
+      const descriptor = Object.getOwnPropertyDescriptor(target, property);
       console.log(
-        'getOwnPropertyDescriptor\n  property:', propp, '\n  result:', descriptor
+        'getOwnPropertyDescriptor\n  property:', property, '\n  result:', descriptor
       );
       return descriptor;
     },
-    // !!! Can be a bug
-    defineProperty(target, property, desciptor) {
-      const defineStatus = Reflect.defineProperty(target, property, desciptor);
+    defineProperty(target, property, descriptor) {
+      const defineStatus = Reflect.defineProperty(target, property, descriptor);
       console.log(
-        'defineProperty\n  key:', property, 
+        'defineProperty\n  key:', property,
         '\n  descriptor:', descriptor,
         '\n  result:', defineStatus
       );
@@ -44,7 +45,7 @@ function logger(obj){
       return true;
     },
     has(target, property) {
-      console.log('has\n  key:', property, '\n  result:', property in targe);
+      console.log('has\n  key:', property, '\n  result:', property in target);
       return property in target;
     },
     get(target, property) {
@@ -53,7 +54,7 @@ function logger(obj){
       return value;
     },
     set(target, property, value) {
-      const setStatus = Reflect.set(target, key, value);
+      const setStatus = Reflect.set(target, property, value);
       console.log(
         'set\n  key:', property, '\n  value:  ', value, '\n  result:', setStatus
       );
@@ -66,6 +67,27 @@ function logger(obj){
       );
       return deleteStatus;
     },
-    
-  })
+    enumerate(target) {
+      const iterator = Reflect.enumerate(target);
+      console.log('enumerate\n  result:', iterator);
+      return iterator;
+    },
+    ownKeys(target) {
+      const ownKeys = Reflect.ownKeys(target);
+      console.log('ownKeys\n  result:', ownKeys);
+      return ownKeys;
+    },
+    apply(target) {
+      const apply = Reflect.apply(target);
+      console.log('apply\n  result:', apply);
+      return apply;
+    },
+    construct(target) {
+      const construct = Reflect.construct(target);
+      console.log('construct\n  result:', construct);
+      return construct;
+    }
+  });
 }
+
+module.exports = Logger;
