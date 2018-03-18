@@ -38,6 +38,15 @@ Object.defineProperties(obj2, [
   }
 ]);
 
+console.log('\n\x1b[4m\x1b[1mChange obj2.__proto__\x1b[0m')
+obj2.__proto__ = {
+  p: 100,
+}
+
+
+console.log('\n\x1b[4m\x1b[1mObject.getPrototypeOf(obj2)\x1b[0m')
+console.log(Object.getPrototypeOf(obj2));
+
 console.log('\n\x1b[4m\x1b[1mdelete\x1b[0m')
 console.log(Object.getOwnPropertyNames(obj2));
 delete Object.c;
