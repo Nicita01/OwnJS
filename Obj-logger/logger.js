@@ -42,7 +42,7 @@ function Logger(obj) {
         '\n  result:', defineStatus
       );
       Object.defineProperty(target, property, descriptor);
-      return true;
+      return defineStatus;
     },
     has(target, property) {
       console.log('has\n  key:', property, '\n  result:', property in target);
