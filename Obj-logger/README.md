@@ -26,3 +26,4 @@ obj = Logger(obj);
 ```
 Now the object became logged\
 All functions that will somehow interact with the object will be immediately escaped to the terminal, as well as their arguments will be displayed, and the result given to them
+
