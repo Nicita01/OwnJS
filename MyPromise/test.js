@@ -1,3 +1,5 @@
+'use strict';
+
 const MyPromise = require(__dirname + 'index.js');
 
 const promise = new MyPromise((res, rej) => {
@@ -35,3 +37,5 @@ promise
   .then(res => {
     console.log('fourth then')
   })
+
+  // TODO: Add tests for paralel works

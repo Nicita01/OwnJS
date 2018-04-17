@@ -88,4 +88,4 @@ MyPromise.prototype.catch = function(rejFunc) {
   return MyPromise.prototype.then.call(this, null, rejFunc)
 }
 
-module.exports = MyPromise;
+export default MyPromise;
