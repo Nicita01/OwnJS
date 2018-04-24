@@ -2,7 +2,7 @@
 
 const arrArrsNodes = [] // [[{}, {}], [{}, {}]]
 
-function GrateGraph(curString, curColumn, start = false, finish = false) {
+function NodeGrateGraph(curString, curColumn, start = false, finish = false) {
   this.up = null;
   this.down = null;
   this.left = null;
@@ -22,6 +22,13 @@ function GrateGraph(curString, curColumn, start = false, finish = false) {
   this.ifFinish = finish;
 }
 
+NodeGrateGraph.prototype.notFreezeNeighbors = function() {
+  let allNeighbors = [this.left, this.right, this.down, this.up];
+  let neighbors = allNeighbors.filter(neighbors => neighbors !== null);
+  let notFreeze = neighbors.sort(neighbors => neighbors.isFreeze === false);
+  return notFreeze;
+}
+
 function makeGraph(dataArr, start, finish) {
   let startX = start.charCodeAt() - 'A'.charCodeAt();
   let startY = parseInt(start[1])
@@ -36,7 +43,7 @@ function makeGraph(dataArr, start, finish) {
       }
       let isStart = curString == startY && curColumn == startX;
       let ifFinish = curString == finishY && curColumn == finishX;
-      arrArrsNodes[curString][curColumn] = new GrateGraph(
+      arrArrsNodes[curString][curColumn] = new NodeodeGrateGraph(
         curString, curColumn, isStart, ifFinish
       );
     }

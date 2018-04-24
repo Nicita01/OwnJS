@@ -1,9 +1,12 @@
 'use strict';
 
-function Heap() {
+function Heap(...nodes) {
   this.root = null;
   this.last = null;
   this.countNodes = 0;
+  for (let curNodes of nodes) {
+    this.getByIndex(curNodes[0], curNodes[1]);
+  }
 }
 
 function Node(priority, data) {
@@ -64,7 +67,7 @@ Heap.prototype.add = function(priority, data) {
   }
 }
 
-Heap.prototype.getMax = function() {
+Heap.prototype.get = function() {
   let max = this.root.data;
   let last = this.getByIndex(this.countNodes);
   this.root.priority = last.priority;
@@ -89,6 +92,8 @@ Heap.prototype.getMax = function() {
   }
   return max;
 }
+
+module.exports = Heap;
 
 // Tests:
 

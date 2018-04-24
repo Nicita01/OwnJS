@@ -29,3 +29,12 @@ rl.question('Введите координаты начала пути (в фо�
     console.log(starter)
   })
 })
+
+function dijkstra(startNode) {
+  // ...
+}
+
+let f = new (require(__dirname + '/binary-heap.js'));
+f.add(1);
+f.add(0)
+console.log(f)
