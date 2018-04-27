@@ -5,7 +5,7 @@ function Heap(...nodes) {
   this.last = null;
   this.countNodes = 0;
   for (let curNodes of nodes) {
-    this.getByIndex(curNodes[0], curNodes[1]);
+    this.add(curNodes[0], curNodes[1]);
   }
 }
 
@@ -68,12 +68,19 @@ Heap.prototype.add = function(priority, data) {
 }
 
 Heap.prototype.get = function() {
+  if (!(this.root)) return null;
+  if (this.countNodes === 1) {
+    let max = this.root.data;
+    this.root = null;
+    this.countNodes--;
+    return max;
+  }
   let max = this.root.data;
   let last = this.getByIndex(this.countNodes);
+  console.log(this)
   this.root.priority = last.priority;
   this.root.data = last.data;
   last.parent[this.countNodes % 2 ? 'childRight' : 'childLeft'] = null;
-  console.log(last)
   let curNode = this.root;
   let curMaxChild = curNode.childLeft ? curNode.childRight ?
     curNode.childRight.priority > curNode.childLeft.priority ?
@@ -90,6 +97,7 @@ Heap.prototype.get = function() {
     curNode.childRight.priority > curNode.childLeft.priority ?
     curNode.childLeft : curNode.childRight : curNode.childLeft : null;
   }
+  this.last = this.getByIndex(--this.countNodes)
   return max;
 }
 
@@ -111,3 +119,8 @@ module.exports = Heap;
 // // console.log(f.getByIndex(5))
 // console.log('asdadasdasd')
 // setTimeout(() => console.dir(f, {depth: null}), 5000)
+// const f = new Heap([1, 1]);
+// console.log(f.get());
+// console.log(f)
+// console.log(f.get());
+// console.log(f)
