@@ -77,7 +77,6 @@ Heap.prototype.get = function() {
   }
   let max = this.root.data;
   let last = this.getByIndex(this.countNodes);
-  console.log(this)
   this.root.priority = last.priority;
   this.root.data = last.data;
   last.parent[this.countNodes % 2 ? 'childRight' : 'childLeft'] = null;
@@ -102,25 +101,3 @@ Heap.prototype.get = function() {
 }
 
 module.exports = Heap;
-
-// Tests:
-
-// const f = new Heap();
-
-// f.add(20, 3);
-// f.add(10, 4);
-// f.add(23, 4);
-// f.add(12, 4);
-// f.add(8, 's')
-// // console.dir(f, {depth: null})
-// // console.log('MINMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM');
-// console.log(f.getMax());
-// console.dir(f, {depth: null})
-// // console.log(f.getByIndex(5))
-// console.log('asdadasdasd')
-// setTimeout(() => console.dir(f, {depth: null}), 5000)
-// const f = new Heap([1, 1]);
-// console.log(f.get());
-// console.log(f)
-// console.log(f.get());
-// console.log(f)
