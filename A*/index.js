@@ -29,6 +29,7 @@ const dataArr = dataStrArr.map(curStr => curStr.split('').map(
 // TODO: валидация входных данных и вводимых знаечний
 rl.question('Введите координаты начала пути (в формате A0): ', (start) => {
   rl.question('Введите координаты цели: ', (finish) => {
+    rl.close();
     const startX = start.charCodeAt() - 'A'.charCodeAt();
     const startY = parseInt(start[1]);
     const finishX = finish.charCodeAt() - 'A'.charCodeAt();
@@ -36,7 +37,6 @@ rl.question('Введите координаты начала пути (в фо�
     const graphFoundation = makeGraph(dataArr);
     const startNode = graphFoundation[startY][startX];
     startNode.length = startNode.complexity;
-    // rl.close();
     aStar(startNode, finishX, finishY);
     output(graphFoundation);
   });
@@ -51,12 +51,13 @@ function aStar(startNode, finishX, finishY) {
       reverseRound(curNode);
       return;
     }
-    for (const curNeighbor of curNode.notFreezeNeighbors()) {
+    for (const curNeighbor of curNode.newNeighbors()) {
       const newCost = curNode.length + curNeighbor.complexity;
       if (newCost < curNeighbor.length) {
         curNeighbor.length = newCost;
         curNeighbor.wentFrom = curNode;
-        const distanse = Math.abs(curNeighbor.X - finishX) + Math.abs(curNeighbor.Y - finishY);
+        const distanse =
+          Math.abs(curNeighbor.x - finishX) + Math.abs(curNeighbor.y - finishY);
         heap.add(distanse + newCost, curNeighbor);
       }
     }
@@ -67,7 +68,7 @@ function aStar(startNode, finishX, finishY) {
 function reverseRound(finishNode) {
   let curNode = finishNode;
   while (curNode) {
-    curNode.complexity = '\x1b[31m' + curNode.complexity;
+    curNode.complexity = '\x1b[32m' + curNode.complexity;
     curNode = curNode.wentFrom;
   }
 }
@@ -76,10 +77,13 @@ function output(graphFoundation) {
   for (const curStr in graphFoundation) {
     for (const curColumn in graphFoundation[curStr]) {
       if (graphFoundation[curStr][curColumn]) {
-        process.stdout.write(graphFoundation[curStr][curColumn].complexity + '');
+        process.stdout.write(
+          graphFoundation[curStr][curColumn].complexity + ''
+        );
         process.stdout.write('\x1b[0m');
       } else {
-        process.stdout.write(dataArr[curStr][curColumn]);
+        process.stdout.write('\x1b[31m' + dataArr[curStr][curColumn]);
+        process.stdout.write('\x1b[0m');
       }
     }
     process.stdout.write('\n');
