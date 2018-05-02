@@ -13,28 +13,43 @@ const dataStrArr = require('fs')
   .toString()
   .split('\n');
 
-process.stdout.write('  ');
-for (let curSymb = 0; curSymb < dataStrArr[0].split('').length; curSymb++) {
+const strCount = dataStrArr.length;
+let maxCountColumn = dataStrArr[0].length;
+for (const curStr in dataStrArr) {
+  maxCountColumn = Math.max(maxCountColumn, curStr.length);
+}
+process.stdout.write(' '.repeat((strCount + '').length + 1));
+for (let curSymb = 0; curSymb < maxCountColumn; curSymb++) {
   process.stdout.write(String.fromCharCode('A'.charCodeAt() + curSymb));
 }
 process.stdout.write('\n');
 for (const curString in dataStrArr) {
-  console.log(curString, dataStrArr[curString].replace(/[1234567890 ]/g, '-'));
+  console.log(curString +
+    ' '.repeat((strCount + '').length + 1 - curString.length) +
+    dataStrArr[curString]
+      .replace(/[^1234567890 ]/g, 'x')
+      .replace(/[1234567890 ]/g, '-')
+  );
 }
-// FIXME: если лабиринт не прямоугольной формы, будут неправильно отображаться
-// оси с координатами.
+
+
 const dataArr = dataStrArr.map(curStr => curStr.split('').map(
   curSymb => (parseInt(curSymb) == curSymb ? parseInt(curSymb) : curSymb)
 ));
-// TODO: валидация входных данных и вводимых знаечний
+const graphFoundation = makeGraph(dataArr);
 rl.question('Введите координаты начала пути (в формате A0): ', (start) => {
+  const startX = start.charCodeAt() - 'A'.charCodeAt();
+  const startY = parseInt(start.slice(1));
+  if (!(graphFoundation[startY]) || !(graphFoundation[startY][startX])) {
+    throw {
+      message: 'Вы не можете стартовать с этой точки',
+      name: 'LogicError'
+    };
+  }
   rl.question('Введите координаты цели: ', (finish) => {
     rl.close();
-    const startX = start.charCodeAt() - 'A'.charCodeAt();
-    const startY = parseInt(start[1]);
     const finishX = finish.charCodeAt() - 'A'.charCodeAt();
-    const finishY = parseInt(finish[1]);
-    const graphFoundation = makeGraph(dataArr);
+    const finishY = parseInt(finish.slice(1));
     const startNode = graphFoundation[startY][startX];
     startNode.length = startNode.complexity;
     aStar(startNode, finishX, finishY);
@@ -62,7 +77,10 @@ function aStar(startNode, finishX, finishY) {
       }
     }
   }
-  // TODO: Добраться невозможно
+  throw {
+    message: 'Путь построить нельзя',
+    name: 'LogicError'
+  };
 }
 
 function reverseRound(finishNode) {
@@ -88,5 +106,4 @@ function output(graphFoundation) {
     }
     process.stdout.write('\n');
   }
-  rl.close();
 }
