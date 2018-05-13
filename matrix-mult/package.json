@@ -1,0 +1,11 @@
+{
+  "name": "matrix-mult",
+  "version": "1.0.0",
+  "description": "use it for multiplication of matrixes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nicita01",
+  "license": "ISC"
+}

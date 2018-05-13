@@ -1,9 +1,9 @@
 'use strict';
 
-function Logger(obj) {
-  if (typeof obj !== 'object') {
-    throw new  TypeError(obj, ' is not an object');
-  }
+const Logger = obj => {
+  // if (typeof obj !== 'object') {
+  //   throw new  TypeError(obj, ' is not an object');
+  // }
   return new Proxy(obj, {
     getPrototypeOf(target) {
       const prototype = Object.getPrototypeOf(target);
@@ -27,7 +27,7 @@ function Logger(obj) {
       console.log('preventExtensions\n  result:', extensionStatus);
       return extensionStatus;
     },
-    getOwnPropertyDescriptor(target, property) {
+    getOwnPropertyDescriptor: (target, property) => {
       const descriptor = Object.getOwnPropertyDescriptor(target, property);
       console.log(
         'getOwnPropertyDescriptor\n  property:', property, '\n  result:', descriptor
@@ -48,7 +48,7 @@ function Logger(obj) {
       console.log('has\n  key:', property, '\n  result:', property in target);
       return property in target;
     },
-    get(target, property) {
+    get: (target, property) => {
       const value = Reflect.get(target, property);
       console.log('get\n  key:', property, '\n  result:', value);
       return value;
@@ -72,17 +72,17 @@ function Logger(obj) {
       console.log('enumerate\n  result:', iterator);
       return iterator;
     },
-    ownKeys(target) {
+    ownKeys: target => {
       const ownKeys = Reflect.ownKeys(target);
       console.log('ownKeys\n  result:', ownKeys);
       return ownKeys;
     },
-    apply(target) {
+    apply: target => {
       const apply = Reflect.apply(target);
       console.log('apply\n  result:', apply);
       return apply;
     },
-    construct(target) {
+    construct: target => {
       const construct = Reflect.construct(target);
       console.log('construct\n  result:', construct);
       return construct;
